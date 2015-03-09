@@ -12,9 +12,42 @@ namespace online_dictionary_03
 {
     public partial class Form1 : Form
     {
+        public Form2 form2 = new Form2();
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            Operations operations = new Operations();
+
+            string name = textBox5.Text;
+            string email = textBox3.Text;
+            string password = textBox4.Text;
+
+            if (operations.Registration(name, email, password))
+                MessageBox.Show(name + " ви успішно зареєстровані!");
+            else
+                MessageBox.Show(name + ", вибачте сталась помилка, перевірте дані!");
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            string email = textBox1.Text;
+            string passsword = textBox2.Text;
+
+            Operations operations = new Operations();
+            string auth = operations.Authorization(email, passsword);
+            if (auth != null)
+            {
+                User.id = Convert.ToInt32(auth);
+
+                this.Hide();
+                form2.Show();
+            }
+            else
+                MessageBox.Show("Помилка, перевірте дані");
         }
     }
 }
