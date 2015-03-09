@@ -12,7 +12,7 @@ namespace online_dictionary_03
 {
     public partial class Form1 : Form
     {
-        public Form2 form2 = new Form2();
+        
         public Form1()
         {
             InitializeComponent();
@@ -41,8 +41,8 @@ namespace online_dictionary_03
             string auth = operations.Authorization(email, passsword);
             if (auth != null)
             {
-                User.id = Convert.ToInt32(auth);
-
+                User.id = auth;
+                Form2 form2 = new Form2(auth);
                 this.Hide();
                 form2.Show();
             }
